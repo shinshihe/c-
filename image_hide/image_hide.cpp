@@ -188,7 +188,8 @@ int hide_image() {
     int pixel_num, pixel_used, start_row, start_col;
     for (int i = 0; i < hide.rows; i++) {
         for (int j = 0; j < hide.cols; j++) {
-            pixel_num =  hide.cols * i + j + 1;
+            //pixel_num =  hide.cols * i + j + 1;
+            pixel_num++;
             pixel_used = (pixel_num - 1) * 8;
             start_row = pixel_used / clone.cols + 1;
             start_col = pixel_used % clone.cols;
@@ -250,9 +251,10 @@ int extract_image() {
     cv::Mat cover_rgb[3];
     cv::split(origin, cover_rgb);
 
-    int tmp = cover_rgb[0].at<uchar>(0, 0);
-    int tmp1 = cover_rgb[0].at<uchar>(0, 1);
-    int tmp2 = cover_rgb[0].at<uchar>(0, 2);
+    //int tmp = cover_rgb[0].at<uchar>(0, 0);
+    //int tmp1 = cover_rgb[0].at<uchar>(0, 1);
+    //int tmp2 = cover_rgb[0].at<uchar>(0, 2);
+
     int hide_row = cover_rgb[0].at<uchar>(0, 0) * 255 + cover_rgb[0].at<uchar>(0, 2);
     int hide_col = cover_rgb[0].at<uchar>(0, 1) * 255 + cover_rgb[0].at<uchar>(0, 3);
 
@@ -264,11 +266,12 @@ int extract_image() {
     cv::split(hide, hide_rgb);
     
     std::cout << "-------- Extracting, please wait for a moment --------" << std::endl;
-    int pixel_num, pixel_used, start_row, start_col;
+    int pixel_num = 0, pixel_used, start_row, start_col;
     uchar value;
     for (int i = 0; i < hide_row; i++) {
         for (int j = 0; j < hide_col; j++) {
-            pixel_num = hide_col * i + j + 1;
+            //pixel_num = hide_col * i + j + 1;
+            pixel_num++;
             pixel_used = (pixel_num - 1) * 8;
             start_row = pixel_used / origin.cols + 1;
             start_col = pixel_used % origin.cols;
