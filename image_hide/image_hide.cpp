@@ -71,7 +71,8 @@ void start_hiding(cv::Mat &cover,int i,int j,std::string str) {
     int count = 0;
     std::string cover_str;
     while (count <= 8) {
-        cover_str = u_to_s(cover.at<uchar>(i, j));
+        //cover_str = u_to_s(cover.at<uchar>(i, j));
+        cover_str = std::to_string(cover.at<uchar>(i, j) % 2);
         if (cover_str[0] > str[count]) {
             cover.at<uchar>(i, j) -= 1;
         }
@@ -185,7 +186,7 @@ int hide_image() {
 
 
     std::string str;
-    int pixel_num, pixel_used, start_row, start_col;
+    int pixel_num = 0, pixel_used, start_row, start_col;
     for (int i = 0; i < hide.rows; i++) {
         for (int j = 0; j < hide.cols; j++) {
             //pixel_num =  hide.cols * i + j + 1;
