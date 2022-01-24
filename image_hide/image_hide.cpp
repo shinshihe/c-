@@ -96,12 +96,13 @@ void start_hiding(cv::Mat &cover,int i,int j,std::string str) {
 }
 
 
-uchar start_extracting(cv::Mat cover, int i, int j) {
+uchar start_extracting(cv::Mat &cover, int i, int j) {
     std::string str = "";
     int count = 0;
     std::string tmp;
     while (count < 8) {
-        tmp = u_to_s(cover.at<uchar>(i, j));
+        //tmp = u_to_s(cover.at<uchar>(i, j));
+        tmp = std::to_string(cover.at<uchar>(i, j) % 2);
         str += tmp[0];
         count++;
         if (j == cover.cols - 1) {
